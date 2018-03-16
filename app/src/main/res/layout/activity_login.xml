@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    android:orientation="vertical">
+    
+    <ImageView
+        android:id="@+id/login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:padding="40dp"
+        android:src="@drawable/logo_iattendance" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_title"
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:paddingTop="10dp">
+
+        <EditText
+            android:id="@+id/edtUsername"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/ic_action_user"
+            android:hint="User name"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#aaa" />
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_action_password"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#aaa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingTop="5dp"
+            android:text="Forgot Password?"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="22dp"
+            android:background="@drawable/shape_button_background"
+            android:elevation="5dp"
+            android:stateListAnimator="@animator/button_elevation"
+            android:text="Sign in"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</RelativeLayout>

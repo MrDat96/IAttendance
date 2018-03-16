@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navTeacherSchedule"
+            android:icon="@drawable/ic_action_view_attendance"
+            android:title="Schedule" />
+        <item
+            android:id="@+id/navTeacherReport"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Send report to Academic" />
+        <item
+            android:id="@+id/navTeacherMessage"
+            android:icon="@drawable/ic_menu_message"
+            android:title="Message" />
+
+    </group>
+
+    <item android:title="Personal">
+        <menu>
+            <item
+                android:id="@+id/navTeacherAccount"
+                android:icon="@drawable/ic_action_user"
+                android:title="Account" />
+        </menu>
+    </item>
+
+</menu>

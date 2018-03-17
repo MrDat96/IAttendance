@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.TeacherRole;
+package se62120.fpt.edu.vn.iattendance.views;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

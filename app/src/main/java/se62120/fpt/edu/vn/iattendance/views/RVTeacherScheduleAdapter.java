@@ -1,8 +1,7 @@
-package se62120.fpt.edu.vn.iattendance.TeacherRole;
+package se62120.fpt.edu.vn.iattendance.views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -17,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import se62120.fpt.edu.vn.iattendance.R;
+import se62120.fpt.edu.vn.iattendance.models.TimeTable;
+import se62120.fpt.edu.vn.iattendance.views.activities.TakeAttendanceActivity;
 
 /**
  * Created by MrDat on 13/03/2018.
@@ -24,10 +25,10 @@ import se62120.fpt.edu.vn.iattendance.R;
 
 public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherScheduleAdapter.RVViewHolder> {
 
-    ArrayList<HashMap<String, String>> hashMaps = new ArrayList<>();
+    ArrayList<TimeTable> list = new ArrayList<>();
 
-    public RVTeacherScheduleAdapter(ArrayList<HashMap<String, String>> hashMaps) {
-        this.hashMaps = hashMaps;
+    public RVTeacherScheduleAdapter(ArrayList<TimeTable> list) {
+        this.list = list;
     }
 
     @Override
@@ -39,14 +40,22 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
 
     @Override
     public void onBindViewHolder(RVViewHolder holder, int position) {
-        Log.v("TEST", "I'M HERE OB BIND");
-        HashMap<String, String> hashMap = hashMaps.get(position);
-        holder._tvTitleSchedule.setText("SLOT X FROM Y TO Z " + hashMap.get("slot"));
+        Log.v("TEST", "I'M HERE ON BIND");
+        //HashMap<String, String> hashMap = hashMaps.get(position);
+        TimeTable timeTable = list.get(position);
+        //holder._tvTitleSchedule.setText("SLOT X FROM Y TO Z " + hashMap.get("slot"));
+        String title = "SLOT " + timeTable.getSlot().getId() + ":  "
+                        + timeTable.getSlot().getStartTime().substring(0,5) + " -> " + timeTable.getSlot().getEndTime().substring(0,5);
+        holder._tvTitleSchedule.setText(title);
+        holder._tvSubTitleSchedule.setText(timeTable.getCourse().getName());
+        holder._tvRoomSchedule.setText(timeTable.getRoom().getId());
+        holder._tvClassSchedule.setText(timeTable.getStudentGroup().getId());
+        holder._tvCampusSchedule.setText(timeTable.getCampus().getName());
     }
 
     @Override
     public int getItemCount() {
-        return hashMaps.size();
+        return list.size();
     }
 
     class RVViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -92,7 +101,7 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
                         break;
                     case 2:
                         Log.v("TEST", "Take manual");
-                        intent = new Intent(context, ManualTakeAttendanceActivity.class);
+                        intent = new Intent(context, TakeAttendanceActivity.class);
                         intent.putExtra("date", "14/03/2018");
                         intent.putExtra("class", "IS1101");
                         intent.putExtra("slot", 1);

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBackgroundItem"
-    tools:context="se62120.fpt.edu.vn.iattendance.TeacherRole.ManualTakeAttendanceActivity">
+    tools:context="se62120.fpt.edu.vn.iattendance.views.activities.TakeAttendanceActivity">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

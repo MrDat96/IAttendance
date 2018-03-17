@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.TeacherRole;
+package se62120.fpt.edu.vn.iattendance.views;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,6 +23,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import se62120.fpt.edu.vn.iattendance.R;
 import se62120.fpt.edu.vn.iattendance.configures.config;
+import se62120.fpt.edu.vn.iattendance.views.fragments.AccountTeacherFragment;
+import se62120.fpt.edu.vn.iattendance.views.fragments.MessageTeacherFragment;
+import se62120.fpt.edu.vn.iattendance.views.fragments.ReportTeacherFragment;
+import se62120.fpt.edu.vn.iattendance.views.fragments.ScheduleTeacherFragment;
 
 public class NavigationTeacherActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,31 +48,33 @@ public class NavigationTeacherActivity extends AppCompatActivity
         String username = sharedPreferences.getString("username", "Not found!");
 
         Log.v(config.AppTag," Navigation Token :" + token + "\n Username:" + username);
-        //Toast.makeText(getApplicationContext(), token, Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
         View headerLayout = nav_view.getHeaderView(0);
+
         ButterKnife.bind(this, headerLayout);
         //_tvUserName = (TextView) headerLayout.findViewById(R.id.tvUserName);
         //_tvUserEmail = (TextView) headerLayout.findViewById(R.id.tvUserEmail);
+        _tvUserName.setText("Sir");
+        _tvUserEmail.setText(username);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new ScheduleTeacherFragment());
         ft.commit();
 
-        getUserInformation();
+        //getUserInformation();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

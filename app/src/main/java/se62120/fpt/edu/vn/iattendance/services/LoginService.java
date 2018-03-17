@@ -17,7 +17,7 @@ import se62120.fpt.edu.vn.iattendance.models.User;
 
 public interface LoginService {
     @FormUrlEncoded
-    @POST("Login")
+    @POST("api/Login")
     Call<ResponseBody> credential(@Field("username") String username, @Field("password") String password,
                                   @Field("grant_type") String grant_type);
 }

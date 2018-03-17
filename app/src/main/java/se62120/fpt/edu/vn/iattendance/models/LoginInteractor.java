@@ -29,7 +29,7 @@ public class LoginInteractor implements Callback<ResponseBody> {
 
     public Retrofit initRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://iattendance.azurewebsites.net/")
+                .baseUrl(config.BaseURL)
                 .build();
         return retrofit;
     }

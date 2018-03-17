@@ -6,4 +6,5 @@ package se62120.fpt.edu.vn.iattendance.configures;
 
 public class config {
     public static final String AppTag = "TEST";
+    public static final String BaseURL = "https://iattendance.azurewebsites.net/";
 }

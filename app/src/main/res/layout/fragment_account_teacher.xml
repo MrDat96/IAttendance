@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="se62120.fpt.edu.vn.iattendance.TeacherRole.AccountTeacherFragment">
+    tools:context="se62120.fpt.edu.vn.iattendance.views.fragments.AccountTeacherFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

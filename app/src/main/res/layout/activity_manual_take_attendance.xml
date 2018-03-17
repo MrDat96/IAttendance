@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBackgroundMain"
-    tools:context="se62120.fpt.edu.vn.iattendance.TeacherRole.ScheduleTeacherFragment">
+    tools:context="se62120.fpt.edu.vn.iattendance.views.fragments.ScheduleTeacherFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -13,15 +13,89 @@
         android:background="@color/colorBackgroundMain"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvManualTaken"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/llOptions"
             android:layout_alignParentTop="true"
-            android:scrollbars="vertical">
+            android:orientation="vertical">
 
-        </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:id="@+id/llImagePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundItem"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivPicker1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorBackgroundItemDark"
+                    android:minHeight="@dimen/image_size_picker"
+                    android:minWidth="@dimen/image_size_picker"
+                    android:src="@drawable/ic_action_take_picture" />
+
+                <ImageView
+                    android:id="@+id/ivPicker2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorBackgroundItemDark"
+                    android:minHeight="@dimen/image_size_picker"
+                    android:minWidth="@dimen/image_size_picker"
+                    android:src="@drawable/ic_action_take_picture" />
+
+                <ImageView
+                    android:id="@+id/ivPicker3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorBackgroundItemDark"
+                    android:minHeight="@dimen/image_size_picker"
+                    android:minWidth="@dimen/image_size_picker"
+                    android:src="@drawable/ic_action_take_picture" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <!--
+                    <Button
+                        android:id="@+id/btnTakePictures"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_action_camera_picker"
+                        android:text="Take  " /> -->
+                    <Button
+                        android:id="@+id/btnPickerImages"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_action_photos_picker"
+
+                        />
+                    <Button
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Scan" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvManualTaken"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/llOptions"

@@ -9,13 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import se62120.fpt.edu.vn.iattendance.TeacherRole.NavigationTeacherActivity;
+import se62120.fpt.edu.vn.iattendance.views.NavigationTeacherActivity;
 import se62120.fpt.edu.vn.iattendance.interfaces.ILoginView;
 import se62120.fpt.edu.vn.iattendance.presenters.LoginPresenter;
 

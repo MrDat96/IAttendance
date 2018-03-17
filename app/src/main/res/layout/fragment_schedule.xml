@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context="se62120.fpt.edu.vn.iattendance.TeacherRole.ScheduleTeacherFragment">
+    tools:context="se62120.fpt.edu.vn.iattendance.views.fragments.ScheduleTeacherFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/tvDateTitile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -41,6 +42,7 @@
                     android:textSize="22dp"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/tvWeekTitile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"

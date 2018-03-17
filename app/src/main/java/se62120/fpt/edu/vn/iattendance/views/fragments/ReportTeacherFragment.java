@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.TeacherRole;
+package se62120.fpt.edu.vn.iattendance.views.fragments;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import se62120.fpt.edu.vn.iattendance.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessageTeacherFragment extends Fragment {
+public class ReportTeacherFragment extends Fragment {
 
 
-    public MessageTeacherFragment() {
+    public ReportTeacherFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class MessageTeacherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message_teacher, container, false);
+        return inflater.inflate(R.layout.fragment_report_teacher, container, false);
     }
 
 }

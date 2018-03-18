@@ -1,10 +1,12 @@
 package se62120.fpt.edu.vn.iattendance.models;
 
+import java.io.Serializable;
+
 /**
  * Created by MrDat on 17/03/2018.
  */
 
-public class Course {
+public class Course implements Serializable{
     private String id;
     private String name;
 
@@ -27,5 +29,13 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

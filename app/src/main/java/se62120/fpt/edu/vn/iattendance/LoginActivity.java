@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
         ButterKnife.bind(this);
         if(BuildConfig.DEBUG) {
-            _edtUsername.setText("ducmeit2015@gmail.com");
+            _edtUsername.setText("anhbn@fpt.edu.vn");
             _edtPassword.setText("Abc12345!");
         }
         presenter = new LoginPresenter(this);

@@ -1,12 +1,9 @@
 package se62120.fpt.edu.vn.iattendance.presenters;
 
-import butterknife.OnClick;
 import se62120.fpt.edu.vn.iattendance.interfaces.ILoginPresenter;
 import se62120.fpt.edu.vn.iattendance.interfaces.ILoginView;
 import se62120.fpt.edu.vn.iattendance.interfaces.OnLoginFinishedListener;
-import se62120.fpt.edu.vn.iattendance.models.AsynchronusLoginInteractor;
-import se62120.fpt.edu.vn.iattendance.models.LoginInteractor;
-import se62120.fpt.edu.vn.iattendance.models.SynchronousLoginInteractor;
+import se62120.fpt.edu.vn.iattendance.presenters.interactor.LoginInteractor;
 
 /**
  * Created by MrDat on 16/03/2018.

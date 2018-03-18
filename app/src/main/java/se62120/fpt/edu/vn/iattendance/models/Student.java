@@ -1,26 +1,24 @@
 package se62120.fpt.edu.vn.iattendance.models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * Created by MrDat on 17/03/2018.
+ * Created by MrDat on 18/03/2018.
  */
 
-public class Teacher implements Serializable{
+public class Student implements Serializable{
     private String id;
     private String name;
-    private Date DOB;
     private String email;
-    private String phone;
+    private String avatarSrc;
 
-    public Teacher(String id, String name, Date DOB, String email, String phone) {
+    public Student(String id, String name, String email, String avatarSrc) {
         this.id = id;
         this.name = name;
-        this.DOB = DOB;
         this.email = email;
-        this.phone = phone;
+        this.avatarSrc = avatarSrc;
     }
+
 
     public String getId() {
         return id;
@@ -38,14 +36,6 @@ public class Teacher implements Serializable{
         this.name = name;
     }
 
-    public Date getDOB() {
-        return DOB;
-    }
-
-    public void setDOB(Date DOB) {
-        this.DOB = DOB;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -54,11 +44,11 @@ public class Teacher implements Serializable{
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getAvatarSrc() {
+        return avatarSrc;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAvatarSrc(String avatarSrc) {
+        this.avatarSrc = avatarSrc;
     }
 }

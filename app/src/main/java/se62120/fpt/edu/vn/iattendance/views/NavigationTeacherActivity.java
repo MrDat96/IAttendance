@@ -56,8 +56,6 @@ public class NavigationTeacherActivity extends AppCompatActivity
         View headerLayout = nav_view.getHeaderView(0);
 
         ButterKnife.bind(this, headerLayout);
-        //_tvUserName = (TextView) headerLayout.findViewById(R.id.tvUserName);
-        //_tvUserEmail = (TextView) headerLayout.findViewById(R.id.tvUserEmail);
         _tvUserName.setText("Sir");
         _tvUserEmail.setText(username);
 

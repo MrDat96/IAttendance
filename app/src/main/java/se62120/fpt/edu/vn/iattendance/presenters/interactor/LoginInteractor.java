@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.models;
+package se62120.fpt.edu.vn.iattendance.presenters.interactor;
 
 import android.util.Log;
 
@@ -37,11 +37,6 @@ public class LoginInteractor implements Callback<ResponseBody> {
     public void credential(String username, String password) {
         Retrofit retrofit = initRetrofit();
         LoginService loginService = retrofit.create(LoginService.class);
-//        String bodyData = "{";
-//        bodyData += "\"username\":\"" + username + "\",";
-//        bodyData += "\"password\":\"" + password + "\",";
-//        bodyData += "\"grant_type\":\"" + "password" + "\"}";
-//        Log.v(config.AppTag, "Body data: " + bodyData);
         Call<ResponseBody> call = loginService.credential(username, password, "password");
         call.enqueue(this);
     }

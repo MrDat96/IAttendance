@@ -1,25 +1,27 @@
 package se62120.fpt.edu.vn.iattendance.models;
 
-import java.io.Serializable;
-
 /**
- * Created by MrDat on 17/03/2018.
+ * Created by MrDat on 18/03/2018.
  */
 
-public class StudentGroup implements Serializable{
-    private String id;
+public class AttendanceStatus {
+    private int id;
     private String name;
 
-    public StudentGroup(String id, String name) {
+    public AttendanceStatus(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public AttendanceStatus() {
+
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

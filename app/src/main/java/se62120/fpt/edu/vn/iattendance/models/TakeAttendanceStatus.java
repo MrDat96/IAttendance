@@ -1,10 +1,12 @@
 package se62120.fpt.edu.vn.iattendance.models;
 
+import java.io.Serializable;
+
 /**
  * Created by MrDat on 18/03/2018.
  */
 
-public class TakeAttendanceStatus {
+public class TakeAttendanceStatus implements Serializable {
     private int id;
     private String name;
 

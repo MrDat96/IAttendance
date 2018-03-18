@@ -1,8 +1,8 @@
 package se62120.fpt.edu.vn.iattendance.views.activities;
 
-import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -29,9 +29,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import se62120.fpt.edu.vn.iattendance.R;
 import se62120.fpt.edu.vn.iattendance.configures.config;
-import se62120.fpt.edu.vn.iattendance.views.RVTeacherManualTakeAdapter;
+import se62120.fpt.edu.vn.iattendance.interfaces.ITakeAttendanceView;
+import se62120.fpt.edu.vn.iattendance.models.SlotAttendance;
+import se62120.fpt.edu.vn.iattendance.models.TimeTable;
+import se62120.fpt.edu.vn.iattendance.presenters.TakeAttendancePresenter;
+import se62120.fpt.edu.vn.iattendance.views.RVTeacherTakeAttendanceAdapter;
 
-public class TakeAttendanceActivity extends AppCompatActivity {
+public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAttendanceView {
     public static final int PICK_IMAGE = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 2;
     private int currentIndexImage = -1;
@@ -45,8 +49,11 @@ public class TakeAttendanceActivity extends AppCompatActivity {
     @BindView(R.id.ivPicker2) ImageView _ivPicker2;
     @BindView(R.id.ivPicker3) ImageView _ivPicker3;
 
-    RVTeacherManualTakeAdapter _rvTeacherManualTakeAdapter;
-    ArrayList<HashMap<String, String>> hashMaps = new ArrayList<>();
+    TakeAttendancePresenter presenter;
+
+    RVTeacherTakeAttendanceAdapter _rvTeacherManualTakeAdapter;
+    TimeTable timeTable;
+    String token = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,27 +72,20 @@ public class TakeAttendanceActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            int _slot = extras.getInt("slot");
-            String _class = extras.getString("class");
-            String _date = extras.getString("date");
+            timeTable = (TimeTable) extras.getSerializable("TimeTable");
+            Log.v(config.AppTag, "Time Table : " + timeTable);
         } else {
             Toast.makeText(getApplicationContext(), "No extra", Toast.LENGTH_SHORT).show();
         }
 
-        hashMaps = getArrHashMaps();
-
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         _rvManualTaken.setLayoutManager(llm);
-        _rvTeacherManualTakeAdapter = new RVTeacherManualTakeAdapter(hashMaps);
-        _rvManualTaken.setAdapter(_rvTeacherManualTakeAdapter);
 
-//        ImageView imgAvatar = (ImageView)findViewById(R.id.ivAvatarManualTaken);
-//        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) imgAvatar.getLayoutParams();
-//        params.width = 70;
-//        params.height = 70;
-//        imgAvatar.setLayoutParams(params);
-//        new DownloadImageTask(imgAvatar).execute("https://www.w3schools.com/howto/img_avatar.png");
+        SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.share_preference), Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "Not found!");
+        presenter = new TakeAttendancePresenter(this);
+        presenter.fecthAttendance("bearer " + token, timeTable);
     }
 
     @OnClick(R.id.btnPickerImages)
@@ -106,9 +106,9 @@ public class TakeAttendanceActivity extends AppCompatActivity {
         //String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/";//
         String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/";
         File newdir = new File(dir);
-        if (!newdir.exists()) {
+        //if (!newdir.exists()) {
             newdir.mkdirs();
-        }
+        //}
         String file = dir + getTimeStamp() + ".jpg";
         File newfile = new File(file);
         try {
@@ -300,5 +300,37 @@ public class TakeAttendanceActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         finish();
         return true;
+    }
+
+    @Override
+    public void onFetchAttendanceSuccess(SlotAttendance slotAttendance) {
+        Log.v(config.AppTag, "On fetch data sucess");
+        _rvTeacherManualTakeAdapter = new RVTeacherTakeAttendanceAdapter(slotAttendance);
+        _rvManualTaken.setAdapter(_rvTeacherManualTakeAdapter);
+    }
+
+    @Override
+    public void onFetchAttendanceFail() {
+        Log.v(config.AppTag, "On fetch data failed");
+    }
+
+    @Override
+    public void onSaveAttendanceSuccess() {
+
+    }
+
+    @Override
+    public void onSaveAttendanceFail() {
+
+    }
+
+    @Override
+    public void onUploadScanImagesSuccess() {
+
+    }
+
+    @Override
+    public void onUploadScanImagesFail() {
+
     }
 }

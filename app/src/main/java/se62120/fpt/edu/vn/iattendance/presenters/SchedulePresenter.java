@@ -48,12 +48,15 @@ public class SchedulePresenter implements Callback<ResponseBody> {
         return retrofit;
     }
 
-    public ArrayList<TimeTable> fetchSchedule(String token, String date) {
+    public void fetchSchedule(String token, String date) {
+        Retrofit retrofit = initRetrofit();
+        ScheduleService scheduleService = retrofit.create(ScheduleService.class);
+        Call<ResponseBody> call = scheduleService.getSchedule(token, date);
+        call.enqueue(this);
+    }
+
+    public ArrayList<TimeTable> fetchSchedule2Test(String token, String date) {
         ArrayList<TimeTable> listSchedule = new ArrayList<>();
-//        Retrofit retrofit = initRetrofit();
-//        ScheduleService scheduleService = retrofit.create(ScheduleService.class);
-//        Call<ResponseBody> call = scheduleService.getSchedule(token, date);
-//        call.enqueue(this);
         String jsonStr = "[\n" +
                 "    {\n" +
                 "        \"time_table_id\": 1,\n" +
@@ -262,16 +265,18 @@ public class SchedulePresenter implements Callback<ResponseBody> {
 
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-        view.onFetchScheduleSuccess(null);
+
         String jsonStr = null;
         try {
-            if (response.body() != null)
+            if (response.body() != null) {
                 jsonStr = response.body().string();
-            else {
+                view.onFetchScheduleSuccess(convertToListTimeTable(jsonStr));
+            } else {
                 Log.v(config.AppTag, "Empty data");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            view.onFetchScheduleFail();
         }
         Log.v(config.AppTag, "Fetched data :" + jsonStr);
     }

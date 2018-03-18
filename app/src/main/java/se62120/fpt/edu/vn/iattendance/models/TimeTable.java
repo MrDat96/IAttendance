@@ -3,13 +3,14 @@ package se62120.fpt.edu.vn.iattendance.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by MrDat on 17/03/2018.
  */
 
-public class TimeTable {
+public class TimeTable implements Serializable{
     private int id;
     private Date date;
     private Slot slot;
@@ -114,5 +115,21 @@ public class TimeTable {
 
     public void setTakeAttendanceStatus(TakeAttendanceStatus takeAttendanceStatus) {
         this.takeAttendanceStatus = takeAttendanceStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "TimeTable{" +
+                "id=" + id +
+                ", date=" + date +
+                ", slot=" + slot +
+                ", teacher=" + teacher +
+                ", studentGroup=" + studentGroup +
+                ", room=" + room +
+                ", campus=" + campus +
+                ", course=" + course +
+                ", timeTableStatus=" + timeTableStatus +
+                ", takeAttendanceStatus=" + takeAttendanceStatus +
+                '}';
     }
 }

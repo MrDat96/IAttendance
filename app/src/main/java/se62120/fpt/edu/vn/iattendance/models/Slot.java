@@ -1,12 +1,13 @@
 package se62120.fpt.edu.vn.iattendance.models;
 
+import java.io.Serializable;
 import java.util.Timer;
 
 /**
  * Created by MrDat on 17/03/2018.
  */
 
-public class Slot {
+public class Slot implements Serializable{
     private int id;
     private String startTime;
     private String endTime;
@@ -39,5 +40,14 @@ public class Slot {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Slot{" +
+                "id=" + id +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                '}';
     }
 }

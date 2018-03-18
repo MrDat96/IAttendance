@@ -1,10 +1,12 @@
 package se62120.fpt.edu.vn.iattendance.models;
 
+import java.io.Serializable;
+
 /**
  * Created by MrDat on 17/03/2018.
  */
 
-public class TimeTableStatus {
+public class TimeTableStatus implements Serializable {
     private String id;
     private String name;
 

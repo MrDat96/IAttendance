@@ -10,8 +10,8 @@ public interface ITakeAttendanceView {
     public void onFetchAttendanceSuccess(SlotAttendance slotAttendance);
     public void onFetchAttendanceFail();
 
-    public void onSaveAttendanceSuccess();
-    public void onSaveAttendanceFail();
+    public void onUpdateAttendanceSuccess(int code, String message);
+    public void onUpdateAttendanceFail(int code, String message);
 
     public void onUploadScanImagesSuccess();
     public void onUploadScanImagesFail();

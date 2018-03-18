@@ -38,6 +38,7 @@ import se62120.fpt.edu.vn.iattendance.views.RVTeacherTakeAttendanceAdapter;
 public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAttendanceView {
     public static final int PICK_IMAGE = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 2;
+
     private int currentIndexImage = -1;
     private int currentChoiceImage = -1;
     String dir = "";
@@ -48,9 +49,12 @@ public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAt
     @BindView(R.id.ivPicker1) ImageView _ivPicker1;
     @BindView(R.id.ivPicker2) ImageView _ivPicker2;
     @BindView(R.id.ivPicker3) ImageView _ivPicker3;
+    @BindView(R.id.btnSubmit) Button _btnSumit;
+    @BindView(R.id.btnSaveAttendances) Button _btnSaveAttendance;
 
     TakeAttendancePresenter presenter;
 
+    SlotAttendance slotAttendance = null;
     RVTeacherTakeAttendanceAdapter _rvTeacherManualTakeAdapter;
     TimeTable timeTable;
     String token = null;
@@ -101,6 +105,14 @@ public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAt
     @OnClick(R.id.ivPicker1) void OnClickPickerImage1(View view) {currentChoiceImage = 0; takePictures();}
     @OnClick(R.id.ivPicker2) void OnClickPickerImage2(View view) {currentChoiceImage = 1; takePictures();}
     @OnClick(R.id.ivPicker3) void OnClickPickerImage3(View view) {currentChoiceImage = 2; takePictures();}
+    @OnClick(R.id.btnSubmit)
+    void onSubmitImages() {
+    }
+    @OnClick(R.id.btnSaveAttendances)
+    void onSubmitAttendances() {
+        Log.v(config.AppTag, slotAttendance.toString());
+        presenter.updateAttendances("bearer " + token, slotAttendance);
+    }
 
     void takePictures() {
         //String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/";//
@@ -305,6 +317,7 @@ public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAt
     @Override
     public void onFetchAttendanceSuccess(SlotAttendance slotAttendance) {
         Log.v(config.AppTag, "On fetch data sucess");
+        this.slotAttendance = slotAttendance;
         _rvTeacherManualTakeAdapter = new RVTeacherTakeAttendanceAdapter(slotAttendance);
         _rvManualTaken.setAdapter(_rvTeacherManualTakeAdapter);
     }
@@ -315,13 +328,14 @@ public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAt
     }
 
     @Override
-    public void onSaveAttendanceSuccess() {
-
+    public void onUpdateAttendanceSuccess(int code, String message) {
+        Log.v(config.AppTag, "Update attendances fail!");
+        presenter.fecthAttendance(token, timeTable);
     }
 
     @Override
-    public void onSaveAttendanceFail() {
-
+    public void onUpdateAttendanceFail(int code, String message) {
+        Log.v(config.AppTag, "Update attendances fail!");
     }
 
     @Override

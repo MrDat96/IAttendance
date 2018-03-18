@@ -47,17 +47,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ID: "
+                            android:text=""
                             android:textColor="@color/colorTitleItem" />
-
                         <TextView
-                            android:id="@+id/tvStudentID"
+                            android:id="@+id/tvStudentName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SE62120"
+                            android:text="Ngo Thuc Dat"
                             android:textColor="@color/colorTitleItem"
                             android:textSize="18dp"
                             android:textStyle="bold" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -68,30 +68,29 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Name: "
+                            android:text=""
                             android:textAlignment="center"
                             android:textColor="@color/colorTitleItem" />
-
                         <TextView
-                            android:id="@+id/tvStudentName"
+                            android:id="@+id/tvStudentID"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ngo Thuc Dat"
+                            android:text="SE62120"
                             android:textColor="@color/colorTitleItem"
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            />
+
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <ToggleButton
-
-                    android:id="@+id/tbStatus"
+                    android:id="@+id/tgbtnStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textOff="Absent"
-                    android:textOn="Present" />
+                    android:textOff="absent"
+                    android:textOn="present" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -28,4 +28,12 @@ public class Attendance {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    @Override
+    public String toString() {
+        return "Attendance{" +
+                "student=" + student +
+                ", status=" + status +
+                '}';
+    }
 }

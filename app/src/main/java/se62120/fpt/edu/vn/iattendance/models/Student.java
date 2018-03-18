@@ -51,4 +51,14 @@ public class Student implements Serializable{
     public void setAvatarSrc(String avatarSrc) {
         this.avatarSrc = avatarSrc;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", avatarSrc='" + avatarSrc + '\'' +
+                '}';
+    }
 }

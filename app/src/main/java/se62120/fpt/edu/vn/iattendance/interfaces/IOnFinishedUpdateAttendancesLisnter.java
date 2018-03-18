@@ -5,5 +5,6 @@ package se62120.fpt.edu.vn.iattendance.interfaces;
  */
 
 public interface IOnFinishedUpdateAttendancesLisnter {
-    public void OnUpdateAttendanceResult(int code, String message);
+    public void OnUpdateAttendanceSuccess(int code, String message);
+    public void OnUpdateAttendanceFail(int code, String message);
 }

@@ -32,4 +32,12 @@ public class AttendanceStatus {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "AttendanceStatus{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

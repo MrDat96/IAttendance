@@ -1,5 +1,8 @@
 package se62120.fpt.edu.vn.iattendance.services;
 
+import org.json.JSONObject;
+
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,8 +17,8 @@ import retrofit2.http.Query;
 
 public interface TakeAttendanceService {
     @GET("api/Attendance")
-    Call<ResponseBody> getAttendance(@Header("Authorization") String token, @Query("Id") String timeTableID);
+    Call<ResponseBody> getAttendance(@Header("Authorization") String token, @Query("TimeTableId") String timeTableID);
 
-    @POST("api/UpdateAttendance")
-    Call<ResponseBody> updateAttendance(@Header("Authorization") String token, @Body String data);
+    @POST("api/Attendance/Update/StatusAttendance/StudentList")
+    Call<ResponseBody> updateAttendance(@Header("Authorization") String token, @Body RequestBody body);
 }

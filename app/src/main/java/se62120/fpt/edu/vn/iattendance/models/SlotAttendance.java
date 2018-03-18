@@ -35,4 +35,11 @@ public class SlotAttendance implements Serializable{
     public void setAttendances(ArrayList<Attendance> attendances) {
         this.attendances = attendances;
     }
+
+    @Override
+    public String toString() {
+        return "SlotAttendance{" +
+                "attendances=" + attendances +
+                '}';
+    }
 }

@@ -19,8 +19,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +28,8 @@ import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.interfaces.IScheduleView;
 import se62120.fpt.edu.vn.iattendance.models.TimeTable;
 import se62120.fpt.edu.vn.iattendance.presenters.SchedulePresenter;
-import se62120.fpt.edu.vn.iattendance.views.NavigationTeacherActivity;
-import se62120.fpt.edu.vn.iattendance.views.RVTeacherScheduleAdapter;
+import se62120.fpt.edu.vn.iattendance.views.activities.NavigationTeacherActivity;
+import se62120.fpt.edu.vn.iattendance.views.adapters.RVTeacherScheduleAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +50,7 @@ public class ScheduleTeacherFragment extends Fragment implements IScheduleView {
     Calendar calendar = Calendar.getInstance();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     String token = "";
+    int role;
 
     public ScheduleTeacherFragment() {
         // Required empty public constructor
@@ -75,6 +74,7 @@ public class ScheduleTeacherFragment extends Fragment implements IScheduleView {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(getResources().getString(R.string.share_preference),
                 Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "Not found!");
+        role = sharedPreferences.getInt("role", -1);
         //token = "bearer vIU6O2W1GvlS1LfISOk19jRI5iqaN8xwIvODzJXYBYxlIDiswJRtSgrCI09sU0NPoNFnyVX7JUDgte0GB4BsgIKHeg_fhWhTtAydqprnAbOWIUtst75uNE9wEf1XGZEKdCTeOkqkHKGYp9Slzf1K_vR1LPJyNjGnkdnLl66Amw1mV6spFQudLcRvSvE4ov71r97Kn4Y2Vpfw1sZ0ktROxc-nSqkUIsfehvQEh8Yrm70DxO5-I4Fls7pb3O1IPHwoPI-42nSDLStBNBO_mOVyQGwzXLi6PP6-QdNPmKJC7fHNn-JDZtLSi-rp0i9j3-q6vSdNfNjHFbO5kFxB5czcm5Cnz0meCriHH9RJ60Qwr-aSz8RDpKtlu4Nh965SKii986PNPwW14Eeh2VHxS34l8GEbBzYetq-BKBzgJcPGaNMlAdoUlTJniRo477M2Tg_52L0ASnrRByPSGSN-Zf4IxFgUj-ZSflid3PbJP8Mg7r95dhGvrU7KaEpD6Wad4DAa";
 
 //        calendar.add(Calendar.DATE, -1);
@@ -88,7 +88,10 @@ public class ScheduleTeacherFragment extends Fragment implements IScheduleView {
 //            presenter = new SchedulePresenter(this);
 //            presenter.fetchSchedule("bearer " + token, dateStr);
 //        }
-        fetchScheduleOnDiff(-1);
+        if (role == config.ROLE_TEACHER)
+            fetchScheduleOnDiff(-7);
+        else
+            fetchScheduleOnDiff(0);
         return fragmentView;
     }
 
@@ -110,7 +113,7 @@ public class ScheduleTeacherFragment extends Fragment implements IScheduleView {
     @Override
     public void onFetchScheduleSuccess(ArrayList<TimeTable> list) {
         Log.v(config.AppTag, "Fetch Data success");
-        rvAdapter = new RVTeacherScheduleAdapter(list);
+        rvAdapter = new RVTeacherScheduleAdapter(list, role);
         _rvSchedule.setAdapter(rvAdapter);
         if (list == null || list.isEmpty()) {
             _emptyView.setVisibility(View.VISIBLE);

@@ -6,8 +6,10 @@ package se62120.fpt.edu.vn.iattendance.interfaces;
 
 public interface ILoginView {
 
-    void navigateToCommit(String username, String token);
+    void navigateToCommit(String username, String token, int role);
     //void network();
     void loginFailed();
+
+    void onFinishCheckUserExist();
 
 }

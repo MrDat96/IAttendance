@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="se62120.fpt.edu.vn.iattendance">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".views.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +28,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.NavigationTeacherActivity"
+            android:name=".views.activities.NavigationTeacherActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".views.activities.TakeAttendanceActivity"></activity>
 
-        </activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
-        <activity android:name=".views.activities.TakeAttendanceActivity">
+        <service
+            android:name=".firebase.ReportFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".firebase.FirebaseIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
 
-        </activity>
+        <activity android:name=".views.activities.StudentReportActivity"></activity>
     </application>
 
 </manifest>

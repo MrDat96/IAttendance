@@ -26,6 +26,7 @@ import se62120.fpt.edu.vn.iattendance.models.Room;
 import se62120.fpt.edu.vn.iattendance.models.Slot;
 import se62120.fpt.edu.vn.iattendance.models.StudentGroup;
 import se62120.fpt.edu.vn.iattendance.models.TakeAttendanceStatus;
+import se62120.fpt.edu.vn.iattendance.models.Teacher;
 import se62120.fpt.edu.vn.iattendance.models.TimeTable;
 import se62120.fpt.edu.vn.iattendance.services.ScheduleService;
 
@@ -218,6 +219,9 @@ public class SchedulePresenter implements Callback<ResponseBody> {
                 String end_time = slotObj.getString("end_time");
                 Slot slot = new Slot(slotID, start_time, end_time);
 
+                String teacherID = timeTableObj.getString("teacher_id");
+                Teacher teacher = new Teacher(teacherID, teacherID);
+
                 JSONObject student_group_obj = timeTableObj.getJSONObject("student_group");
                 String studentGroupId = student_group_obj.getString("id");
                 String studentGroupName = student_group_obj.getString("name");
@@ -237,12 +241,13 @@ public class SchedulePresenter implements Callback<ResponseBody> {
                 String courseId = courseObj.getString("id");
                 String courseName = courseObj.getString("name");
                 Course course = new Course(courseId, courseName);
-
-                JSONObject TakeAttendanceStatusObj = timeTableObj.getJSONObject("status_take_attendance");
-                int takeId = TakeAttendanceStatusObj.getInt("id");
-                String takeName = TakeAttendanceStatusObj.getString("name");
-                TakeAttendanceStatus take = new TakeAttendanceStatus(takeId, takeName);
-
+                TakeAttendanceStatus take = null;
+                if (!timeTableObj.isNull("status_take_attendance")) {
+                    JSONObject TakeAttendanceStatusObj = timeTableObj.getJSONObject("status_take_attendance");
+                    int takeId = TakeAttendanceStatusObj.getInt("id");
+                    String takeName = TakeAttendanceStatusObj.getString("name");
+                    take = new TakeAttendanceStatus(takeId, takeName);
+                }
                 TimeTable timeTable = new TimeTable();
                 timeTable.setId(time_table_id);
                 timeTable.setDate(date);
@@ -252,7 +257,7 @@ public class SchedulePresenter implements Callback<ResponseBody> {
                 timeTable.setCampus(campus);
                 timeTable.setCourse(course);
                 timeTable.setTakeAttendanceStatus(take);
-
+                timeTable.setTeacher(teacher);
                 list.add(timeTable);
             }
         } catch (JSONException e) {

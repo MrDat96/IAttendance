@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.views;
+package se62120.fpt.edu.vn.iattendance.views.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,7 +30,7 @@ import se62120.fpt.edu.vn.iattendance.views.fragments.ScheduleTeacherFragment;
 
 public class NavigationTeacherActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    int role;
     // information of user in DrawerNavigation
     @BindView(R.id.tvUserName)
     TextView _tvUserName;
@@ -46,6 +46,7 @@ public class NavigationTeacherActivity extends AppCompatActivity
                 Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "Not found!");
         String username = sharedPreferences.getString("username", "Not found!");
+        role = sharedPreferences.getInt("role", -1);
 
         Log.v(config.AppTag," Navigation Token :" + token + "\n Username:" + username);
 

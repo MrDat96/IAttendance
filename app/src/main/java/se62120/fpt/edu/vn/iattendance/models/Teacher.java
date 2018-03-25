@@ -14,6 +14,15 @@ public class Teacher implements Serializable{
     private String email;
     private String phone;
 
+    public Teacher(String id) {
+        this.id = id;
+    }
+
+    public Teacher(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Teacher(String id, String name, Date DOB, String email, String phone) {
         this.id = id;
         this.name = name;

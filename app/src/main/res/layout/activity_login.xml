@@ -12,10 +12,29 @@
         android:padding="40dp"
         android:src="@drawable/logo_iattendance" />
 
+    <com.google.android.gms.common.SignInButton
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:visibility="gone"
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_title"/>
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/line"
+        android:layout_below="@id/sign_in_button"
+        android:textColor="@color/colorBackgroundItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="--------------- Or ------------------"
+        android:textAlignment="center"/>
     <LinearLayout
+        android:id="@+id/form_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_title"
+        android:layout_below="@id/sign_in_button"
         android:orientation="vertical"
         android:padding="40dp"
         android:paddingTop="10dp">

@@ -20,4 +20,7 @@ public interface LoginService {
     @POST("api/Login")
     Call<ResponseBody> credential(@Field("username") String username, @Field("password") String password,
                                   @Field("grant_type") String grant_type);
+
+    @POST("api/LoginGG")
+    Call<ResponseBody> credential_google(@Field("google_token") String googleToken, @Field("grant_type") String grant_type);
 }

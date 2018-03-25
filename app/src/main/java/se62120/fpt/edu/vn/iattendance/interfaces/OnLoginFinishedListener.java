@@ -6,5 +6,5 @@ package se62120.fpt.edu.vn.iattendance.interfaces;
 
 public interface OnLoginFinishedListener {
     void onError();
-    void onSuccess(String username, String token);
+    void onSuccess(String username, String token, int role);
 }

@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.views;
+package se62120.fpt.edu.vn.iattendance.views.adapters;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -12,16 +12,10 @@ import android.widget.ToggleButton;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import se62120.fpt.edu.vn.iattendance.R;
 import se62120.fpt.edu.vn.iattendance.configures.AttendanceConfig;
 import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.models.AttendanceStatus;
-import se62120.fpt.edu.vn.iattendance.models.DownloadImageTask;
 import se62120.fpt.edu.vn.iattendance.models.SlotAttendance;
 import se62120.fpt.edu.vn.iattendance.models.Student;
 
@@ -34,20 +28,20 @@ public class RVTeacherTakeAttendanceAdapter extends RecyclerView.Adapter<RVTeach
     SlotAttendance slotAttendance;
 
     public RVTeacherTakeAttendanceAdapter(SlotAttendance slotAttendance) {
-        Log.v(config.AppTag, "Attendances size" + slotAttendance.getAttendances().size());
+        //Log.v(config.AppTag, "Attendances size" + slotAttendance.getAttendances().size());
         this.slotAttendance = slotAttendance;
     }
 
     @Override
     public RVViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.v("TEST", "I'M HERE ON CREATE");
+        //Log.v("TEST", "I'M HERE ON CREATE");
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.manual_taken_attendance_layout_item, parent, false);
         return new RVViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(RVViewHolder holder, int position) {
-        Log.v("TEST", "I'M HERE OB BIND");
+        //Log.v("TEST", "I'M HERE OB BIND");
         //HashMap<String, String> hashMap = hashMaps.get(position);
 
         ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) holder._ivAvatarManualTaken.getLayoutParams();

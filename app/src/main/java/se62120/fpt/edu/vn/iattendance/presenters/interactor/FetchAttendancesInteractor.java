@@ -54,7 +54,7 @@ public class FetchAttendancesInteractor implements Callback<ResponseBody> {
                 String avatarSrc = studentObjJSON.getString("image_path");
                 JSONObject detailObjJSON = studentObjJSON.getJSONObject("student_detail");
                 String name = detailObjJSON.getString("name");
-                String email = detailObjJSON.getString("Email");
+                String email = detailObjJSON.getString("email");
                 Student student = new Student(id, name, email, avatarSrc);
 
                 JSONObject attendanceStatusObjJSON = attendanceJSON.getJSONObject("status_attendance");

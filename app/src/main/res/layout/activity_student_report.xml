@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="se62120.fpt.edu.vn.iattendance.views.activities.StudentReportActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Send report to teacher"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="30dp"
+                    android:text="Your Name:" />
+
+                <EditText
+                    android:id="@+id/edtStudentName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:editable="false"
+                    android:text="Ngo Thuc Dat" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="30dp"
+                    android:text="Class:" />
+
+                <EditText
+                    android:id="@+id/edtClass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:editable="false"
+                    android:text="SE1101" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:paddingLeft="30dp"
+                    android:text="Supervisor:" />
+
+                <EditText
+                    android:id="@+id/edtTeacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="14"
+                    android:editable="false"
+                    android:text="Bui Ngoc Anh" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:paddingLeft="30dp"
+                    android:text="Date:" />
+
+                <EditText
+                    android:id="@+id/edtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="14"
+                    android:editable="false"
+                    android:text="17/3/2013" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:paddingLeft="30dp"
+                    android:text="Time: " />
+                <EditText
+                    android:id="@+id/edtTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="14"
+                    android:editable="false"
+                    android:text="7h30 - 9h00" />
+                <EditText
+                    android:id="@+id/edtSlot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:text="Slot 1" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <EditText
+            android:id="@+id/edtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:hint="Description"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:text="Submit" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

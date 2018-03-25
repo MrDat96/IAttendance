@@ -1,4 +1,4 @@
-package se62120.fpt.edu.vn.iattendance.views;
+package se62120.fpt.edu.vn.iattendance.views.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import se62120.fpt.edu.vn.iattendance.R;
 import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.models.TimeTable;
+import se62120.fpt.edu.vn.iattendance.views.activities.StudentReportActivity;
 import se62120.fpt.edu.vn.iattendance.views.activities.TakeAttendanceActivity;
 
 /**
@@ -28,9 +28,11 @@ import se62120.fpt.edu.vn.iattendance.views.activities.TakeAttendanceActivity;
 public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherScheduleAdapter.RVViewHolder> {
 
     ArrayList<TimeTable> list = new ArrayList<>();
+    int role;
 
-    public RVTeacherScheduleAdapter(ArrayList<TimeTable> list) {
+    public RVTeacherScheduleAdapter(ArrayList<TimeTable> list, int role) {
         this.list = list;
+        this.role = role;
     }
 
     @Override
@@ -71,6 +73,7 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
         TextView _tvRoomSchedule;
         TextView _tvClassSchedule;
         TextView _tvCampusSchedule;
+        int role;
 
         public RVViewHolder(View itemView) {
             super(itemView);
@@ -93,12 +96,19 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
 
             checkAttendance.setOnMenuItemClickListener(onEditMenu);
             viewItem.setOnMenuItemClickListener(onEditMenu);
+
+            if (role == 0) {
+                MenuItem reportItem = contextMenu.add(Menu.NONE, 3, 3, "Report to teacher");
+                reportItem.setOnMenuItemClickListener(onEditMenu);
+            }
         }
 
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Intent intent = null;
+                int position;
+                TimeTable timeTable;
                 switch (menuItem.getItemId()) {
                     case 1:
                         Log.v("TEST", "Check Attendance");
@@ -107,12 +117,19 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
 //                        intent.putExtra("class", "IS1101");
 //                        intent.putExtra("slot", 1);
                         Log.v(config.AppTag, cardView.getTag() + "");
-                        int position = (int) cardView.getTag();
-                        TimeTable timeTable = list.get(position);
+                        position = (int) cardView.getTag();
+                        timeTable = list.get(position);
                         intent.putExtra("TimeTable", timeTable);
                         break;
                     case 2:
                         Log.v("TEST", "View");
+                        break;
+                    case 3:
+                        Log.v(config.AppTag, "Report");
+                        intent = new Intent(context, StudentReportActivity.class);
+                        position = (int) cardView.getTag();
+                        timeTable = list.get(position);
+                        intent.putExtra("TimeTable", timeTable);
                         break;
                 }
                 context.startActivity(intent);

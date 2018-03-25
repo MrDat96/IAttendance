@@ -41,6 +41,10 @@ public class LoginInteractor implements Callback<ResponseBody> {
         call.enqueue(this);
     }
 
+    public void credential(String google_token) {
+
+    }
+
     // Response success and save token and user to Share_preferences
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -52,7 +56,9 @@ public class LoginInteractor implements Callback<ResponseBody> {
             JSONObject reader = new JSONObject(jsonStr);
             String token = reader.getString("access_token");
             String username = reader.getString("userName");
-            listener.onSuccess(username, token);
+            //int role = reader.getInt("role");
+            int role = 1;
+            listener.onSuccess(username, token, role);
             return;
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,6 +71,6 @@ public class LoginInteractor implements Callback<ResponseBody> {
     @Override
     public void onFailure(Call<ResponseBody> call, Throwable t) {
         listener.onError();
-        Log.v(config.AppTag, "MR DAT fail");
+        Log.v(config.AppTag, "On Interactor login fail");
     }
 }

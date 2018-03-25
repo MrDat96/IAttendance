@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "1060921492083",
+    "firebase_url": "https://iattendance-1521656657054.firebaseio.com",
+    "project_id": "iattendance-1521656657054",
+    "storage_bucket": "iattendance-1521656657054.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060921492083:android:b4cd4a18d3efadaa",
+        "android_client_info": {
+          "package_name": "se62120.fpt.edu.vn.iattendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060921492083-g10s9utm54vlmsd6skcqfle6hvv2cq0d.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1060921492083-577qjsh5h3n09184gifo99uo2635vg9q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "se62120.fpt.edu.vn.iattendance",
+            "certificate_hash": "90e8263dafd90eff76f4cefd489d3027368dbc85"
+          }
+        },
+        {
+          "client_id": "1060921492083-deh06k66r2e9riskbt7t9e5gcvd0g9o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtFGWitRY6huBdkcCZ3owC7oG8k-DgG9I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060921492083-g10s9utm54vlmsd6skcqfle6hvv2cq0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    android {
+        useLibrary 'org.apache.http.legacy'
+    }
 }
 
 dependencies {
@@ -33,5 +36,13 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:converter-gson:2.+'
+    compile 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
+
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.firebase:firebase-auth:11.8.0'
 }
+apply plugin: 'com.google.gms.google-services'

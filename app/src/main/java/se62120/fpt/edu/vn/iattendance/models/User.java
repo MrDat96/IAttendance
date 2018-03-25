@@ -10,9 +10,18 @@ public class User {
     private String password;
     private String token;
 
+    public User() {
+    }
+
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+
+    public User(String userId, String userName, String token) {
+        this.userId = userId;
+        this.userName = userName;
+        this.token = token;
     }
 
     public String getUserId() {

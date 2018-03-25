@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="se62120.fpt.edu.vn.iattendance.views.NavigationTeacherActivity"
+    tools:context="se62120.fpt.edu.vn.iattendance.views.activities.NavigationTeacherActivity"
     tools:showIn="@layout/app_bar_navigation">
     <FrameLayout
         android:layout_width="match_parent"

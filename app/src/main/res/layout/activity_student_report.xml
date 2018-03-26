@@ -120,6 +120,23 @@
                     android:text="Slot 1" />
 
             </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:paddingLeft="30dp"
+                    android:text="Topic:" />
+
+                <EditText
+                    android:id="@+id/edtTopic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="14"
+                    android:editable="false"
+                    android:text="Check attendance" />
+            </TableRow>
 
         </TableLayout>
 
@@ -127,16 +144,17 @@
             android:id="@+id/edtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:hint="Description"
             android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/btnSubmit"
+            android:id="@+id/btnSendReport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:text="Submit" />
     </LinearLayout>

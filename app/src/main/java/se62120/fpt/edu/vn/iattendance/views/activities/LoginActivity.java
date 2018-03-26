@@ -69,31 +69,39 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Goog
         presenter.checkExistedUser();
     }
 
-    private   void initFCM(String username) {
+    private   void initFCM(String id) {
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.v(config.AppTag, "Instance token :" + token);
-        sendRegistrationToServer(token, username);
+        sendRegistrationToServer(token, id);
     }
-    private void sendRegistrationToServer(String token, String username) {
+    private void sendRegistrationToServer(String token, String id) {
         DatabaseReference dbRef  = FirebaseDatabase.getInstance().getReference();
         User user = new User();
-        user.setUserName(username);
+        user.setUserName(id);
         user.setToken(token);
-        dbRef.child("users").child(username.split("@")[0]).setValue(user);
+        dbRef.child("users").child(id).setValue(user);
     }
 
     void redirectNavigation(String username, String token, int role) {
-        initFCM(username);
+        String id = "";
+        if (username.equals("anhbn@fpt.edu.vn")) {
+            id = "AnhBNSE1101";
+            role = config.ROLE_TEACHER;
+        } else {
+            id = "SE62120";
+            role = config.ROLE_STUDENT;
+        }
+
+        initFCM(id);
         Intent navigationAct = new Intent(getApplicationContext(), NavigationTeacherActivity.class);
 //        navigationAct.putExtra("role", 1);
         SharedPreferences sharedPreferences = getSharedPreferences(I_ATTENDANCE_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", token);
         editor.putString("username", username);
-        if (username.equals("anhbn@fpt.edu.vn"))
-            role = config.ROLE_TEACHER;
-        else role = config.ROLE_STUDENT;
 
+
+        editor.putString("id", id);
         editor.putInt("role", role);
         editor.commit();
         startActivity(navigationAct);

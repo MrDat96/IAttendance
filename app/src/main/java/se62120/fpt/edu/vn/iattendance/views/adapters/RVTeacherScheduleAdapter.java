@@ -28,7 +28,7 @@ import se62120.fpt.edu.vn.iattendance.views.activities.TakeAttendanceActivity;
 public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherScheduleAdapter.RVViewHolder> {
 
     ArrayList<TimeTable> list = new ArrayList<>();
-    int role;
+    int role = -1;
 
     public RVTeacherScheduleAdapter(ArrayList<TimeTable> list, int role) {
         this.list = list;
@@ -73,7 +73,6 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
         TextView _tvRoomSchedule;
         TextView _tvClassSchedule;
         TextView _tvCampusSchedule;
-        int role;
 
         public RVViewHolder(View itemView) {
             super(itemView);
@@ -91,13 +90,15 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             contextMenu.setHeaderTitle(_tvTitleSchedule.getText() + " \r\n " + _tvSubTitleSchedule.getText());
-            MenuItem checkAttendance = contextMenu.add(Menu.NONE, 1, 1, "Check Attendance");
+            if (role == config.ROLE_TEACHER) {
+                MenuItem checkAttendance = contextMenu.add(Menu.NONE, 1, 1, "Check Attendance");
+                checkAttendance.setOnMenuItemClickListener(onEditMenu);
+            }
             MenuItem viewItem = contextMenu.add(Menu.NONE, 2, 2, "View");
-
-            checkAttendance.setOnMenuItemClickListener(onEditMenu);
             viewItem.setOnMenuItemClickListener(onEditMenu);
 
-            if (role == 0) {
+            Log.v(config.AppTag, "Role on Schedule :" + role);
+            if (role == config.ROLE_STUDENT) {
                 MenuItem reportItem = contextMenu.add(Menu.NONE, 3, 3, "Report to teacher");
                 reportItem.setOnMenuItemClickListener(onEditMenu);
             }

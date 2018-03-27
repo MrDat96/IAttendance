@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackgroundItem"
-    tools:context="se62120.fpt.edu.vn.iattendance.views.activities.DisplayReportsActivity">
+    android:background="#F5F5F5"
+    tools:context="se62120.fpt.edu.vn.iattendance.views.fragments.ReportsFragment">
     <android.support.v7.widget.CardView
+        android:id="@+id/cvReport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -23,14 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="@color/colorBackgroundItem"
                 android:weightSum="10">
-
-                <ImageView
-                    android:id="@+id/ivAvatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7dp"
-                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -45,7 +40,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tvStudentName"
+                            android:id="@+id/tvName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ngo Thuc Dat"
@@ -57,14 +52,6 @@
                             android:layout_height="wrap_content"
                             android:text="  "
                             android:textColor="@color/colorTitleItem" />
-                        <TextView
-                        android:id="@+id/tvStudentID"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SE62120"
-                        android:textColor="@color/colorTitleItem"
-                        android:textSize="15dp"
-                        />
 
                     </LinearLayout>
 
@@ -74,12 +61,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textColor="@color/colorTitleItem" />
-                        <TextView
                             android:id="@+id/tvTopic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -88,8 +69,24 @@
                             android:textColor="@color/colorTitleItem"
                             android:textSize="15dp"
                             />
+                        <TextView
+                            android:paddingLeft="10dp"
+                            android:id="@+id/tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="status"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorTitleItem" />
 
                     </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date"
+                        android:textColor="@color/colorTitleItem"
+                        android:textSize="15dp"
+                        />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

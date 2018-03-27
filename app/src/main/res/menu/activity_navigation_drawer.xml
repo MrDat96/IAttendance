@@ -11,7 +11,7 @@
         <item
             android:id="@+id/navTeacherReport"
             android:icon="@drawable/ic_menu_send"
-            android:title="Send report to Academic" />
+            android:title="Reports" />
         <item
             android:id="@+id/navTeacherMessage"
             android:icon="@drawable/ic_menu_message"
@@ -25,6 +25,10 @@
                 android:id="@+id/navTeacherAccount"
                 android:icon="@drawable/ic_action_user"
                 android:title="Account" />
+            <item
+                android:id="@+id/navLogOut"
+                android:icon="@drawable/ic_action_left_sign"
+                android:title="Log Out" />
         </menu>
     </item>
 

@@ -60,7 +60,26 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Goog
             _edtPassword.setText("Abc12345!");
         }
         presenter = new LoginPresenter(this);
+
+        checkUserLoggedIn();
         //presenter.initGoogleSignIn(this);
+    }
+
+    public void checkUserLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.share_preference),
+                Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        String username = sharedPreferences.getString("username", null);
+        int role = sharedPreferences.getInt("role", -1);
+        String id = sharedPreferences.getString("id", null);
+        if (token != null) {
+            Log.v(config.AppTag, "User logged in");
+            initFCM(id);
+            Intent navigationAct = new Intent(getApplicationContext(), NavigationTeacherActivity.class);
+            startActivity(navigationAct);
+        } else {
+            Log.v(config.AppTag, "Need to login");
+        }
     }
 
     @Override

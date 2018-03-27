@@ -12,6 +12,9 @@ public class Slot implements Serializable{
     private String startTime;
     private String endTime;
 
+    public Slot() {
+    }
+
     public Slot(int id, String startTime, String endTime) {
         this.id = id;
         this.startTime = startTime;

@@ -60,24 +60,24 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
 
         if (role == AttendanceConfig.ROLE_STUDENT) {
             if (timeTable.getAttendanceStatus() != null) {
-                Log.v(config.AppTag, "Attendance status of student oke");
+                Log.v(config.AppTag, "Attendance student status oke");
                 holder._tvStatusAttendance.setText(timeTable.getAttendanceStatus().getName());
-                if (timeTable.getAttendanceStatus().getId() == AttendanceConfig.STUDENT_ABSENT) {
-                    holder._tvStatusAttendance.setTextColor(Color.RED);
-                } else if (timeTable.getAttendanceStatus().getId() == AttendanceConfig.STUDENT_PRESENT) {
+                if (timeTable.getAttendanceStatus().getId() == AttendanceConfig.STUDENT_PRESENT) {
                     holder._tvStatusAttendance.setTextColor(Color.GREEN);
+                } else if (timeTable.getAttendanceStatus().getId() == AttendanceConfig.STUDENT_ABSENT) {
+                    holder._tvStatusAttendance.setTextColor(Color.RED);
                 } else {
                     holder._tvStatusAttendance.setTextColor(Color.BLUE);
                 }
             }
         } else {
             if (timeTable.getTakeAttendanceStatus() != null) {
-                Log.v(config.AppTag, "Attendance status of teacher oke");
+                Log.v(config.AppTag, "Attendance teacher status oke");
                 holder._tvStatusAttendance.setText(timeTable.getTakeAttendanceStatus().getName());
-                if (timeTable.getTakeAttendanceStatus().getId() == AttendanceConfig.TEACHER_ABSENT) {
-                    holder._tvStatusAttendance.setTextColor(Color.RED);
-                } else if (timeTable.getTakeAttendanceStatus().getId() == AttendanceConfig.TEACHER_PRESENT) {
+                if (timeTable.getTakeAttendanceStatus().getId() == AttendanceConfig.TEACHER_PRESENT) {
                     holder._tvStatusAttendance.setTextColor(Color.GREEN);
+                } else if (timeTable.getTakeAttendanceStatus().getId() == AttendanceConfig.TEACHER_ABSENT) {
+                    holder._tvStatusAttendance.setTextColor(Color.RED);
                 } else {
                     holder._tvStatusAttendance.setTextColor(Color.BLUE);
                 }

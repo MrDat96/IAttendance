@@ -1,10 +1,9 @@
 package se62120.fpt.edu.vn.iattendance.views.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,7 +24,7 @@ import se62120.fpt.edu.vn.iattendance.R;
 import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.views.fragments.AccountTeacherFragment;
 import se62120.fpt.edu.vn.iattendance.views.fragments.MessageTeacherFragment;
-import se62120.fpt.edu.vn.iattendance.views.fragments.ReportTeacherFragment;
+import se62120.fpt.edu.vn.iattendance.views.fragments.ReportsFragment;
 import se62120.fpt.edu.vn.iattendance.views.fragments.ScheduleTeacherFragment;
 
 public class NavigationTeacherActivity extends AppCompatActivity
@@ -98,7 +97,7 @@ public class NavigationTeacherActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
@@ -137,7 +136,7 @@ public class NavigationTeacherActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.navTeacherReport) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.mainFrame, new ReportTeacherFragment());
+            ft.replace(R.id.mainFrame, new ReportsFragment());
             ft.commit();
         } else if (id == R.id.navTeacherMessage) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -147,11 +146,24 @@ public class NavigationTeacherActivity extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.mainFrame, new AccountTeacherFragment());
             ft.commit();
+        } else if (id == R.id.navLogOut) {
+            Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+            SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.I_ATTENDANCE_PREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("token", null);
+            editor.commit();
+            startActivity(loginIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void gotoReportsFragment() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, new ReportsFragment());
+        ft.commit();
     }
 
     public void setActionBarTitle(String title) {

@@ -11,32 +11,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 import se62120.fpt.edu.vn.iattendance.R;
-import se62120.fpt.edu.vn.iattendance.configures.AttendanceConfig;
 import se62120.fpt.edu.vn.iattendance.configures.config;
-import se62120.fpt.edu.vn.iattendance.interfaces.IScheduleView;
 import se62120.fpt.edu.vn.iattendance.interfaces.IStudentReportView;
-import se62120.fpt.edu.vn.iattendance.models.RetrofitSupport;
 import se62120.fpt.edu.vn.iattendance.models.TimeTable;
-import se62120.fpt.edu.vn.iattendance.models.fcm.Data;
-import se62120.fpt.edu.vn.iattendance.models.fcm.FirebaseCloudMessage;
 import se62120.fpt.edu.vn.iattendance.presenters.StudentReportPresenter;
-import se62120.fpt.edu.vn.iattendance.services.FirebaseService;
 
 public class StudentReportActivity extends AppCompatActivity implements IStudentReportView {
 
     TimeTable timeTable;
     String userId;
+    String token;
 
     @BindView(R.id.edtStudentName) EditText _edtUsername;
     @BindView(R.id.edtClass) EditText _edtClass;
@@ -70,6 +59,7 @@ public class StudentReportActivity extends AppCompatActivity implements IStudent
         SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.share_preference), Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "No name");
         userId = sharedPreferences.getString("id",null);
+        token = sharedPreferences.getString("token", token);
         _edtUsername.setText(username);
         SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
         if (timeTable != null) {
@@ -90,7 +80,7 @@ public class StudentReportActivity extends AppCompatActivity implements IStudent
             Toast.makeText(getApplicationContext(), "Something wrong with your store ID on share references", Toast.LENGTH_SHORT).show();
         } else {
             showProgressDialog();
-            presenter.sendReport(userId, timeTable.getTeacher().getId(), _edtTopic.getText().toString(), _edtDescription.getText().toString(), timeTable.getId());
+            presenter.sendReport("bearer " +token, userId, timeTable.getTeacher().getId(), _edtTopic.getText().toString(), _edtDescription.getText().toString(), timeTable.getId());
         }
     }
 
@@ -100,7 +90,7 @@ public class StudentReportActivity extends AppCompatActivity implements IStudent
         hideProgressDialog();
         Toast.makeText(getApplicationContext(), "Send successful", Toast.LENGTH_SHORT).show();
         // Show reports
-        
+        this.finish();
     }
 
     @Override

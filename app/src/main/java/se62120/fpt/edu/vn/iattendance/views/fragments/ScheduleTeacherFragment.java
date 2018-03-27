@@ -89,9 +89,9 @@ public class ScheduleTeacherFragment extends Fragment implements IScheduleView {
 //            presenter.fetchSchedule("bearer " + token, dateStr);
 //        }
         if (role == config.ROLE_TEACHER)
-            fetchScheduleOnDiff(-7);
+            fetchScheduleOnDiff(-10);
         else
-            fetchScheduleOnDiff(0);
+            fetchScheduleOnDiff(-10);
         return fragmentView;
     }
 

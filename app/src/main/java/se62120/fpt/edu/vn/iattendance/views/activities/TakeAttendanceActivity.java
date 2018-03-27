@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +70,21 @@ public class TakeAttendanceActivity extends AppCompatActivity implements ITakeAt
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
 
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//        int height = displayMetrics.heightPixels / 2;
+//        int width = displayMetrics.widthPixels;
+//        Log.v(config.AppTag, "Screen size : h" + height + " w: " + width);
+//
+//        int size = width/6;
+
         ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) _ivPicker1.getLayoutParams();
         params.width = 180;
         params.height = 180;
+//        if (params.width > size) {
+//            params.width = size;
+//            params.height = size;
+//        }
         _ivPicker1.setLayoutParams(params);
         _ivPicker2.setLayoutParams(params);
         _ivPicker3.setLayoutParams(params);

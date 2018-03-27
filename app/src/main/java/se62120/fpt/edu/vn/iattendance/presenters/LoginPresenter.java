@@ -50,8 +50,8 @@ public class LoginPresenter implements ILoginPresenter, OnLoginFinishedListener,
     }
 
     @Override
-    public void onSuccess(String username, String token, int role) {
-        view.navigateToCommit(username, token, role);
+    public void onSuccess(String id, String username, String token, int role) {
+        view.navigateToCommit(id, username, token, role);
     }
 
     GoogleApiClient mGoogleApiClient;

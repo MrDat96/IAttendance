@@ -67,10 +67,7 @@ public class TakeAttendancePresenter implements IOnFinishedFetchAttendancesListe
     }
 
     public void updateAttendances(String token, SlotAttendance slotAttendance) {
-        String data = "{";
-        data += "\"id\":" + slotAttendance.getTimeTable().getId() + ",";
-        data += "\"attendance_list\": [";
-
+        String data = "[";
         for (int i = 0; i < slotAttendance.getAttendances().size(); i++) {
             data += "{";
             data += "\"student_id\":\"" + slotAttendance.getAttendances().get(i).getStudent().getId() + "\",";
@@ -81,9 +78,8 @@ public class TakeAttendancePresenter implements IOnFinishedFetchAttendancesListe
             }
         }
         data += "]";
-        data += "}";
         Log.v(config.AppTag, "Data update attendances JSON: " + data);
-        interactorUpdateAttendaces.updateAttendance(token, data);
+        interactorUpdateAttendaces.updateAttendance(token,  slotAttendance.getTimeTable().getId()+"", data);
     }
 
     public void scanFacesAttendance(String token, String timeTableId, String[] imagePaths) {

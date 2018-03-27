@@ -99,6 +99,8 @@ public class StudentReportActivity extends AppCompatActivity implements IStudent
     public void onStudentReportSuccess() {
         hideProgressDialog();
         Toast.makeText(getApplicationContext(), "Send successful", Toast.LENGTH_SHORT).show();
+        // Show reports
+        
     }
 
     @Override

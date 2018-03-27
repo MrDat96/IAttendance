@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import se62120.fpt.edu.vn.iattendance.BuildConfig;
 import se62120.fpt.edu.vn.iattendance.R;
+import se62120.fpt.edu.vn.iattendance.configures.AttendanceConfig;
 import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.models.User;
 import se62120.fpt.edu.vn.iattendance.views.activities.NavigationTeacherActivity;
@@ -59,14 +60,14 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Goog
             _edtPassword.setText("Abc12345!");
         }
         presenter = new LoginPresenter(this);
-        presenter.initGoogleSignIn(this);
+        //presenter.initGoogleSignIn(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        showProgressDialog();
-        presenter.checkExistedUser();
+        //showProgressDialog();
+        //presenter.checkExistedUser();
     }
 
     private   void initFCM(String id) {
@@ -82,15 +83,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Goog
         dbRef.child("users").child(id).setValue(user);
     }
 
-    void redirectNavigation(String username, String token, int role) {
-        String id = "";
-        if (username.equals("anhbn@fpt.edu.vn")) {
-            id = "AnhBNSE1101";
-            role = config.ROLE_TEACHER;
-        } else {
-            id = "SE62120";
-            role = config.ROLE_STUDENT;
-        }
+    void redirectNavigation(String id, String username, String token, int role) {
+//        String id = "";
+//        if (role == AttendanceConfig.ROLE_TEACHER) {
+//            id = "AnhBNSE1101";
+//        } else {
+//            id = "SE62120";
+//        }
 
         initFCM(id);
         Intent navigationAct = new Intent(getApplicationContext(), NavigationTeacherActivity.class);
@@ -99,8 +98,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Goog
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", token);
         editor.putString("username", username);
-
-
         editor.putString("id", id);
         editor.putInt("role", role);
         editor.commit();
@@ -140,9 +137,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, Goog
     }
 
     @Override
-    public void navigateToCommit(String username, String token, int role) {
+    public void navigateToCommit(String id, String username, String token, int role) {
         progressDialog.dismiss();
-        redirectNavigation(username, token, role);
+        redirectNavigation(id, username, token, role);
     }
 
     @Override

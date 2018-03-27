@@ -13,6 +13,6 @@ import retrofit2.http.Query;
  */
 
 public interface ScheduleService {
-    @GET("api/TimeTable")
-    Call<ResponseBody> getSchedule(@Header("Authorization") String token, @Query("Date") String date);
+    @GET("api/timetable")
+    Call<ResponseBody> getSchedule(@Header("Authorization") String token, @Query("date") String date);
 }

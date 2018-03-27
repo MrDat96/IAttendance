@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,8 +32,8 @@
         <activity
             android:name=".views.activities.NavigationTeacherActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".views.activities.TakeAttendanceActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".views.activities.TakeAttendanceActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -57,7 +59,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".views.activities.StudentReportActivity"></activity>
+        <activity android:name=".views.activities.StudentReportActivity" />
+        <activity android:name=".views.activities.DisplayReportsActivity"></activity>
     </application>
 
 </manifest>

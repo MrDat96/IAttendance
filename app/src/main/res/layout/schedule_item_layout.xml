@@ -59,6 +59,13 @@
                         android:textColor="@color/colorTitleItem"
                         android:textSize="15dp" />
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tvStatusAttendace"
+                    android:paddingLeft="20dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="status"/>
             </LinearLayout>
 
             <LinearLayout

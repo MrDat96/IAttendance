@@ -28,11 +28,13 @@ public class UpdateAttendancesInteractor implements Callback<ResponseBody> {
         this.listener = listener;
     }
 
-    public void updateAttendance(String token, String data) {
+    public void updateAttendance(String token, String timeTableId,String data) {
+        Log.v(config.AppTag, "On update of Token: " + token);
+        Log.v(config.AppTag,"Time table Id: " + timeTableId + ", data:" + data);
         Retrofit retrofit = RetrofitSupport.initRetrofit();
         TakeAttendanceService takeAttendanceService = retrofit.create(TakeAttendanceService.class);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), data);
-        Call<ResponseBody> call = takeAttendanceService.updateAttendance(token, body);
+        Call<ResponseBody> call = takeAttendanceService.updateAttendance(token, timeTableId, body);
         call.enqueue(this);
     }
 
@@ -46,6 +48,7 @@ public class UpdateAttendancesInteractor implements Callback<ResponseBody> {
                 Log.v(config.AppTag, "On fetched attendances success!");
             } else {
                 Log.v(config.AppTag, "Empty data");
+                listener.OnUpdateAttendanceFail(1, "Failed!");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -21,6 +21,7 @@ public class TimeTable implements Serializable{
     private Course course;
     private TimeTableStatus timeTableStatus;
     private TakeAttendanceStatus takeAttendanceStatus;
+    private AttendanceStatus attendanceStatus;
 
     public TimeTable() {
     }
@@ -115,6 +116,14 @@ public class TimeTable implements Serializable{
 
     public void setTakeAttendanceStatus(TakeAttendanceStatus takeAttendanceStatus) {
         this.takeAttendanceStatus = takeAttendanceStatus;
+    }
+
+    public AttendanceStatus getAttendanceStatus() {
+        return attendanceStatus;
+    }
+
+    public void setAttendanceStatus(AttendanceStatus attendanceStatus) {
+        this.attendanceStatus = attendanceStatus;
     }
 
     @Override

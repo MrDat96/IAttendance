@@ -2,6 +2,7 @@ package se62120.fpt.edu.vn.iattendance.views.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import se62120.fpt.edu.vn.iattendance.R;
+import se62120.fpt.edu.vn.iattendance.configures.AttendanceConfig;
 import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.models.TimeTable;
 import se62120.fpt.edu.vn.iattendance.views.activities.StudentReportActivity;
@@ -56,6 +58,32 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
         holder._tvClassSchedule.setText(timeTable.getStudentGroup().getId());
         holder._tvCampusSchedule.setText(timeTable.getCampus().getName());
 
+        if (role == AttendanceConfig.ROLE_STUDENT) {
+            if (timeTable.getAttendanceStatus() != null) {
+                Log.v(config.AppTag, "Attendance status of student oke");
+                holder._tvStatusAttendance.setText(timeTable.getAttendanceStatus().getName());
+                if (timeTable.getAttendanceStatus().getId() == AttendanceConfig.STUDENT_ABSENT) {
+                    holder._tvStatusAttendance.setTextColor(Color.RED);
+                } else if (timeTable.getAttendanceStatus().getId() == AttendanceConfig.STUDENT_PRESENT) {
+                    holder._tvStatusAttendance.setTextColor(Color.GREEN);
+                } else {
+                    holder._tvStatusAttendance.setTextColor(Color.BLUE);
+                }
+            }
+        } else {
+            if (timeTable.getTakeAttendanceStatus() != null) {
+                Log.v(config.AppTag, "Attendance status of teacher oke");
+                holder._tvStatusAttendance.setText(timeTable.getTakeAttendanceStatus().getName());
+                if (timeTable.getTakeAttendanceStatus().getId() == AttendanceConfig.TEACHER_ABSENT) {
+                    holder._tvStatusAttendance.setTextColor(Color.RED);
+                } else if (timeTable.getTakeAttendanceStatus().getId() == AttendanceConfig.TEACHER_PRESENT) {
+                    holder._tvStatusAttendance.setTextColor(Color.GREEN);
+                } else {
+                    holder._tvStatusAttendance.setTextColor(Color.BLUE);
+                }
+            }
+        }
+
         holder.cardView.setTag(position);
     }
 
@@ -73,6 +101,7 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
         TextView _tvRoomSchedule;
         TextView _tvClassSchedule;
         TextView _tvCampusSchedule;
+        TextView _tvStatusAttendance;
 
         public RVViewHolder(View itemView) {
             super(itemView);
@@ -82,6 +111,7 @@ public class RVTeacherScheduleAdapter extends RecyclerView.Adapter<RVTeacherSche
             _tvRoomSchedule = (TextView) itemView.findViewById(R.id.tvRoomSchedule);
             _tvClassSchedule = (TextView) itemView.findViewById(R.id.tvClassSchedule);
             _tvCampusSchedule = (TextView) itemView.findViewById(R.id.tvCampusSchedule);
+            _tvStatusAttendance = (TextView) itemView.findViewById(R.id.tvStatusAttendace);
             itemView.setOnCreateContextMenuListener(this);
 
             cardView = (CardView) itemView.findViewById(R.id.cvSchedule);

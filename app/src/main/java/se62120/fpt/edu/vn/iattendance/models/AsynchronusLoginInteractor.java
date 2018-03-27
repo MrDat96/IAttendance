@@ -18,7 +18,7 @@ public class AsynchronusLoginInteractor implements IAsynchrousLoginInteractor {
             @Override
             public void run() {
                 if(username.contains("fpt")) {
-                    listener.onSuccess("onSuccessTest", "No worry!", -1);
+                    listener.onSuccess("id","onSuccessTest", "No worry!", -1);
                 } else {
                     listener.onError();
                 }

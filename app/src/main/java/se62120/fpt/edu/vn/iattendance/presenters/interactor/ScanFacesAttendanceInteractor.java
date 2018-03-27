@@ -41,37 +41,43 @@ public class ScanFacesAttendanceInteractor implements Callback<ResponseBody> {
     }
 
     public void scanFace(String token, String timeTableId, String[] filePaths) {
-        Log.v(config.AppTag, "On Retrofit scan face...");
+        Log.v(config.AppTag, "On Retrofit scan face... " + timeTableId + "  " + token);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(config.BaseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         TakeAttendanceService takeAttendanceService = retrofit.create(TakeAttendanceService.class);
-//        MultipartBody.Builder builder = new MultipartBody.Builder();
-//        builder.setType(MultipartBody.FORM);
-//
-//        builder.addFormDataPart("time_table_id", timeTableId);
-//
-//        for(int i = 0; i < filePaths.length; i++) {
-//            if (filePaths[i] != null) {
-//                Log.v(config.AppTag, "Add path file: " + filePaths[i] + " to builer Multipart");
-//                File file = new File(filePaths[i]);
-//                builder.addFormDataPart("ImagesScanning", file.getName()
-//                        , RequestBody.create(MediaType.parse("multipart/form-data"), file));
-//            }
-//        }
-//        MultipartBody requestBody = builder.build();
-//        Call<ResponseBody> call = takeAttendanceService.scanFaceByImagesUpload(token, requestBody);
-        List<MultipartBody.Part> parts = new ArrayList<>();
-        for (int i = 0; i < filePaths.length; i++)
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM);
+
+        for(int i = 0; i < filePaths.length; i++) {
             if (filePaths[i] != null) {
+                Log.v(config.AppTag, "Add path file: " + filePaths[i] + " to builer Multipart");
                 File file = new File(filePaths[i]);
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-                parts.add(part);
+                builder.addFormDataPart("ImagesScanning", file.getName()
+                        , RequestBody.create(MediaType.parse("multipart/form-data"), file));
             }
-        RequestBody timeTableIdPart = RequestBody.create(MultipartBody.FORM, timeTableId);
-        Call<ResponseBody> call = takeAttendanceService.scanFaceByDynamicImagesAttendace(token, timeTableIdPart, parts);
+        }
+        MultipartBody requestBody = builder.build();
+        Call<ResponseBody> call = takeAttendanceService.scanFaceByImagesUpload(token, timeTableId, requestBody);
+//        List<MultipartBody.Part> parts = new ArrayList<>();
+//        for (int i = 0; i < filePaths.length; i++)
+//            if (filePaths[i] != null) {
+//                File file = new File(filePaths[i]);
+//                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//                MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+//                parts.add(part);
+//            }
+
+//        File file = new File(filePaths[0]);
+//        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+
+        //RequestBody timeTableIdPart = RequestBody.create(MediaType.parse("text/plain"), timeTableId);
+
+        //RequestBody rqFile = RequestBody.create(MediaType.parse("image/*"), file);
+
+        //Call<ResponseBody> call = takeAttendanceService.scanFaceByDynamicImagesAttendace5(token,timeTableId,part);
         call.enqueue(this);
         Log.v(config.AppTag, "Calling back...");
     }

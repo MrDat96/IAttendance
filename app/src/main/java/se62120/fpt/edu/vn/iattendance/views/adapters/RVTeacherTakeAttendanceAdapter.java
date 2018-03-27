@@ -54,7 +54,9 @@ public class RVTeacherTakeAttendanceAdapter extends RecyclerView.Adapter<RVTeach
         AttendanceStatus attendanceStatus = slotAttendance.getAttendances().get(position).getStatus();
         holder._tvStudentID.setText(student.getId());
         holder._tvStudentName.setText(student.getName());
+
         Picasso.get().load(student.getAvatarSrc()).into(holder._ivAvatarManualTaken);
+        //Glide.with(holder.itemView).load(student.getAvatarSrc()).into(holder._ivAvatarManualTaken);
 
         if (attendanceStatus.getId() == AttendanceConfig.ABSENT_ATTENDANCE
                 || attendanceStatus.getId() == AttendanceConfig.NOT_YET_ATTENDANCE) {

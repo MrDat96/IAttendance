@@ -20,6 +20,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import se62120.fpt.edu.vn.iattendance.configures.config;
 import se62120.fpt.edu.vn.iattendance.interfaces.IScheduleView;
+import se62120.fpt.edu.vn.iattendance.models.AttendanceStatus;
 import se62120.fpt.edu.vn.iattendance.models.Campus;
 import se62120.fpt.edu.vn.iattendance.models.Course;
 import se62120.fpt.edu.vn.iattendance.models.Room;
@@ -248,6 +249,15 @@ public class SchedulePresenter implements Callback<ResponseBody> {
                     String takeName = TakeAttendanceStatusObj.getString("name");
                     take = new TakeAttendanceStatus(takeId, takeName);
                 }
+
+                AttendanceStatus attendanceStatus = null;
+                if (!timeTableObj.isNull("status_attendance")) {
+                    JSONObject statusAttendanceObj = timeTableObj.getJSONObject("status_attendance");
+                    int statusId = statusAttendanceObj.getInt("id");
+                    String statusName = statusAttendanceObj.getString("name");
+                    attendanceStatus = new AttendanceStatus(statusId, statusName);
+                }
+
                 TimeTable timeTable = new TimeTable();
                 timeTable.setId(time_table_id);
                 timeTable.setDate(date);
@@ -258,6 +268,7 @@ public class SchedulePresenter implements Callback<ResponseBody> {
                 timeTable.setCourse(course);
                 timeTable.setTakeAttendanceStatus(take);
                 timeTable.setTeacher(teacher);
+                timeTable.setAttendanceStatus(attendanceStatus);
                 list.add(timeTable);
             }
         } catch (JSONException e) {

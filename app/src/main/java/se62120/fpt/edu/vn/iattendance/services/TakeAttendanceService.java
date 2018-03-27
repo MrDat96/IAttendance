@@ -29,17 +29,38 @@ public interface TakeAttendanceService {
     @GET("api/Attendance")
     Call<ResponseBody> getAttendance(@Header("Authorization") String token, @Query("TimeTableId") String timeTableID);
 
-    @POST("api/Attendance/Update/StatusAttendance/StudentList")
-    Call<ResponseBody> updateAttendance(@Header("Authorization") String token, @Body RequestBody body);
+    @POST("api/attendance/update/manual/all")
+    Call<ResponseBody> updateAttendance(@Header("Authorization") String token, @Query("timeTableId") String timeTableID, @Body RequestBody body);
 
-    @POST("api/Attendance/Update/StatusAttendance/StudentList/FaceScan")
-    Call<ResponseBody> scanFaceByImagesUpload(@Header("Authorization") String token, @Body RequestBody file);
+    @POST("api/attendance/update/identity")
+    Call<ResponseBody> scanFaceByImagesUpload(@Header("Authorization") String token,@Query("timeTableId") String timeTableId,@Body RequestBody file);
 
     @Headers({"Accept: application/json"})
     @Multipart
-    @POST("api/Attendance/Update/StatusAttendance/StudentList/FaceScan")
-    Call<ResponseBody> scanFaceByDynamicImagesAttendace(@Header("Authorization") String token, @Part("time_table_id") RequestBody timeTableID,
+    @POST("api/attendance/update/identity")
+    Call<ResponseBody> scanFaceByDynamicImagesAttendace2(@Header("Authorization") String token, @Part("timeTableId") RequestBody timeTableID,
                                                       @Part List<MultipartBody.Part> files);
+
+    @Headers({"Accept: application/json"})
+    @Multipart
+    @POST("api/attendance/update/identity")
+    Call<ResponseBody> scanFaceByDynamicImagesAttendace3(@Header("Authorization") String token, @Query("timeTableId") String timeTableID,
+                                                        @Part List<MultipartBody.Part> files);
+    @Headers({"Accept: application/json"})
+    @Multipart
+    @POST("api/attendance/update/identity")
+    Call<ResponseBody> scanFaceByDynamicImagesAttendaceOneFile(@Header("Authorization") String token, @Query("timeTableId") String timeTableID,
+                                                               @Part("image") RequestBody image);
+
+    @Headers({"Accept: application/json"})
+    @Multipart
+    @POST("api/attendance/update/identity?timeTableId=1")
+    Call<ResponseBody> scanFaceByDynamicImagesAttendace4(@Header("Authorization") String token, @Part List<MultipartBody.Part> files);
+
+    @Headers({"Accept: application/json"})
+    @Multipart
+    @POST("api/attendance/update/identity")
+    Call<ResponseBody> scanFaceByDynamicImagesAttendace5(@Header("Authorization") String token, @Query("timeTableId") String timeTableId,@Part MultipartBody.Part file);
 
     @Multipart
     @POST("api/Attendance/Update/StatusAttendance/StudentList/FaceScan")
